@@ -1,0 +1,19 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.skywatch</groupId>
+        <artifactId>skywatch-platform</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>common</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>common-exception</module>
+        <module>common-security</module>
+        <module>common-kafka</module>
+        <module>common-redis</module>
+        <module>common-util</module>
+    </modules>
+</project>
