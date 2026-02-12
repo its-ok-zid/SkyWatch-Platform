@@ -15,11 +15,23 @@ spring:
           predicates:
             - Path=/api/users/**
           filters:
+            - name: CircuitBreaker
+              args:
+                name: defaultCircuit
+                fallbackUri: forward:/fallback
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 1
                 redis-rate-limiter.burstCapacity: 100
                 key-resolver: "#{@userKeyResolver}"
+  resilience4j:
+    circuitbreaker:
+      instances:
+        defaultCircuit:
+          slidingWindowSize: 10
+          failureRateThreshold: 50
+          waitDurationInOpenState: 60s
+          permittedNumberOfCallsInHalfOpenState: 3
 
 management:
   endpoints:
