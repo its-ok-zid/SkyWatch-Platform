@@ -1,9 +1,11 @@
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.skywatch</groupId>
-        <artifactId>skywatch-platform</artifactId>
+        <groupId>com.zidtech</groupId>
+        <artifactId>skywatch</artifactId>
         <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>common</artifactId>

@@ -1,35 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.0.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.zidtech</groupId>
-	<artifactId>skywatch</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>SkyWatch Platform</name>
-	<description> Aviation Intelligence Microservices Platform</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Spring Boot Parent -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.0.2</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.zidtech</groupId>
+    <artifactId>skywatch</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>SkyWatch Platform</name>
+    <description>Aviation Intelligence Microservices Platform</description>
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
     <properties>
         <java.version>21</java.version>
         <spring.boot.version>3.3.2</spring.boot.version>
         <spring.cloud.version>2023.0.3</spring.cloud.version>
+        <jjwt.version>0.11.5</jjwt.version>
         <maven.compiler.release>21</maven.compiler.release>
     </properties>
 
@@ -40,16 +44,7 @@
     <dependencyManagement>
         <dependencies>
 
-            <!-- Spring Boot BOM -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <!-- Spring Cloud BOM -->
+            <!-- Spring Cloud BOM (ONLY ONCE) -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -58,16 +53,25 @@
                 <scope>import</scope>
             </dependency>
 
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter</artifactId>
-                </dependency>
+            <!-- JJWT -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
 
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-test</artifactId>
-                    <scope>test</scope>
-                </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -76,22 +80,17 @@
     <!-- ===================================================== -->
 
     <modules>
-        <!-- Common Modules -->
-        <module>common/common-exception</module>
-        <module>common/common-security</module>
-        <module>common/common-kafka</module>
-        <module>common/common-redis</module>
-        <module>common/common-util</module>
+        <module>common</module>
 
-        <!-- Microservices -->
-        <module>api-gateway</module>
-        <module>user-service</module>
-        <module>flight-ingestion-service</module>
-        <module>flight-tracking-service</module>
-        <module>weather-service</module>
-        <module>analytics-service</module>
-        <module>notification-service</module>
-        <module>search-service</module>
+        <!--        &lt;!&ndash; Microservices &ndash;&gt;-->
+        <!--        <module>api-gateway</module>-->
+        <!--        <module>user-service</module>-->
+        <!--        <module>flight-ingestion-service</module>-->
+        <!--        <module>flight-tracking-service</module>-->
+        <!--        <module>weather-service</module>-->
+        <!--        <module>analytics-service</module>-->
+        <!--        <module>notification-service</module>-->
+        <!--        <module>search-service</module>-->
     </modules>
 
     <!-- ===================================================== -->
