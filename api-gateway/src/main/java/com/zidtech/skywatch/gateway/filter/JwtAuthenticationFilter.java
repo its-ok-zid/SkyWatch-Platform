@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
@@ -48,12 +49,24 @@ public class JwtAuthenticationFilter implements WebFilter {
 
             var auth = new UsernamePasswordAuthenticationToken(userId, null, authorities);
 
-            return chain.filter(exchange)
+            ServerHttpRequest mutatedRequest = exchange.getRequest()
+                    .mutate()
+                    .header("X-User-Id", userId)
+                    .header("X-User-Role", role)
+                    .build();
+
+            ServerWebExchange mutatedExchange = exchange.mutate()
+                    .request(mutatedRequest)
+                    .build();
+
+            return chain.filter(mutatedExchange)
                     .contextWrite(ReactiveSecurityContextHolder
                             .withSecurityContext(Mono.just(new SecurityContextImpl(auth))));
 
         } catch (Exception e) {
-            return Mono.error(new RuntimeException("Invalid JWT Token"));
+            exchange.getResponse().setStatusCode(org.springframework.http.HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete();
+
         }
     }
 }
