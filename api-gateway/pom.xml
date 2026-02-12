@@ -28,12 +28,14 @@
         <dependency>
             <groupId>com.skywatch</groupId>
             <artifactId>common-security</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Redis (Rate Limiting) -->
         <dependency>
             <groupId>com.skywatch</groupId>
             <artifactId>common-redis</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Actuator -->
@@ -52,7 +54,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
-            <version>2.5.0</version>
+            <version>${springdoc.version}</version>
         </dependency>
 
         <!-- Testing -->
