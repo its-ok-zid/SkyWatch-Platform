@@ -1,5 +1,6 @@
 package com.zidtech.skywatch.gateway.config;
 
+import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -29,5 +30,14 @@ public class GatewaySecurityConfig {
                         .anyExchange().authenticated()
                 )
                 .build();
+    }
+
+    @Bean
+    public RedisRateLimiter redisRateLimiter() {
+        return new RedisRateLimiter(
+                2,   // replenishRate (≈120 per minute)
+                100  // burst capacity
+        );
+
     }
 }
