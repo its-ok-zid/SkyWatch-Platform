@@ -2,8 +2,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.zidtech</groupId>
-        <artifactId>skywatch</artifactId>
+        <groupId>com.skywatch</groupId>
+        <artifactId>skywatch-platform</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>

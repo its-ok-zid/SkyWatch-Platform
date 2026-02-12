@@ -10,8 +10,8 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.zidtech</groupId>
-    <artifactId>skywatch</artifactId>
+    <groupId>com.skywatch</groupId>
+    <artifactId>skywatch-platform</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>SkyWatch Platform</name>
@@ -33,6 +33,7 @@
         <java.version>21</java.version>
         <spring.boot.version>3.3.2</spring.boot.version>
         <spring.cloud.version>2023.0.3</spring.cloud.version>
+        <springdoc.version>2.5.0</springdoc.version>
         <jjwt.version>0.11.5</jjwt.version>
         <maven.compiler.release>21</maven.compiler.release>
     </properties>
@@ -81,9 +82,9 @@
 
     <modules>
         <module>common</module>
-
+        <module>api-gateway</module>
         <!--        &lt;!&ndash; Microservices &ndash;&gt;-->
-        <!--        <module>api-gateway</module>-->
+
         <!--        <module>user-service</module>-->
         <!--        <module>flight-ingestion-service</module>-->
         <!--        <module>flight-tracking-service</module>-->
